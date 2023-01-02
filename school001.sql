@@ -26,9 +26,11 @@ DROP TABLE IF EXISTS `class`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `class` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `floor` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `nameIdx` (`name`)
+  KEY `nameIdx` (`name`),
+  KEY `floorIdx` (`floor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +40,7 @@ CREATE TABLE `class` (
 
 LOCK TABLES `class` WRITE;
 /*!40000 ALTER TABLE `class` DISABLE KEYS */;
-INSERT INTO `class` (`id`, `name`) VALUES (1,'A'),(2,'B'),(3,'C'),(4,'D'),(5,'E');
+INSERT INTO `class` (`id`, `name`, `floor`) VALUES (1,'A',1),(2,'B',2),(3,'C',2),(4,'D',3),(5,'E',3);
 /*!40000 ALTER TABLE `class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,9 +53,9 @@ DROP TABLE IF EXISTS `student`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `student` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `dob` date NOT NULL,
-  `gender` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `class_id` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name_idx` (`name`),
